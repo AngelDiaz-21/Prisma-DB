@@ -45,7 +45,8 @@ app.put('/explorers/:id', async (req, res) => {
             id: id
         },
         data: {
-            mission: req.body.mission
+            username: req.body.username,
+            mission: req.body.mission,
         }
     })
 
