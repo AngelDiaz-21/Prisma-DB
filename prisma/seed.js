@@ -102,6 +102,7 @@ const prisma = new PrismaClient();
                 mission: 'Node'
             },
         });
+
         const woopa10 = await prisma.explorer.upsert({
             where: { name: 'Woopa 10' },
             update: {},
@@ -113,6 +114,47 @@ const prisma = new PrismaClient();
         });
 
         console.log('Create 10 explorers');
+    } catch (e) {
+        console.error(e);
+        process.exit(1);
+    } finally {
+        await prisma.$disconnect();
+    }
+})();
+
+(async function mission_commanders() {
+    try {
+        const missionCommander = await prisma.mission_commanders.upsert({
+            where: { name: 'Rodrigo Martinez' },
+            update: {},
+            create: {
+                name: 'Rodrigo Martinez',
+                missionCommander: 'FrontEnd',
+                enrollments: 500
+            },
+        });
+        
+        const missionCommander1 = await prisma.mission_commanders.upsert({
+            where: { name: 'Carlo Gilmar' },
+            update: {},
+            create: {
+                name: 'Carlo Gilmar',
+                missionCommander: 'Node',
+                enrollments: 250
+            },
+        });
+
+        const missionCommander2 = await prisma.mission_commanders.upsert({
+            where: { name: 'Fernanda Ochoa' },
+            update: {},
+            create: {
+                name: 'Fernanda Ochoa',
+                missionCommander: 'Java',
+                enrollments: 250
+            },
+        });
+
+        console.log('Create 3 mission commanders');
     } catch (e) {
         console.error(e);
         process.exit(1);
